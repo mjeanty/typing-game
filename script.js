@@ -84,5 +84,8 @@ text.addEventListener('input', e => {
    addWordToDOM()
    updateScore()
    e.target.value = ""
+
+   time += 15
+   updateTime
   }
 })
