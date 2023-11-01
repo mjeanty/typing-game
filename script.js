@@ -30,6 +30,13 @@ let time = 10;
 
 text.focus()
 
+let difficulty = localStorage.getItem('difficulty') !== null ? localStorage.getItem('difficulty') : 'medium'
+
+//set difficulty text value
+difficultySelect.value = localStorage.getItem('difficulty') !== null ? localStorage.getItem('difficulty') : 'medium'
+
+
+
 // counting down
 const timeInterval = setInterval(updateTime, 1000)
 
@@ -85,7 +92,22 @@ text.addEventListener('input', e => {
    updateScore()
    e.target.value = ""
 
-   time += 15
-   updateTime
+   if (difficulty === 'hard' ){
+    time += 4
+   } else if (difficulty === 'medium'){
+    time += 8
+   } else{
+    time += 12
+   }
+   updateTime()
   }
+})
+
+//settings click button
+settingsBtn.addEventListener('click',() => settings.classList.toggle('hide'))
+
+//select 
+settingsForm.addEventListener('change', e => {
+  difficulty = e.target.value
+  localStorage.setItem('difficulty', difficulty)
 })
